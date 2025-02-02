@@ -16,7 +16,7 @@ def chat():
         return jsonify({"response": "Por favor, escribe un mensaje."})
 
     try:
-client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+    client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 respuesta = client.chat.completions.create(
     model="gpt-4-turbo",
