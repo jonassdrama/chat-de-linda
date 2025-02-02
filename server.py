@@ -16,10 +16,12 @@ def chat():
         return jsonify({"response": "Por favor, escribe un mensaje."})
 
     try:
-        respuesta = openai.ChatCompletion.create(
-            model="gpt-4-turbo",
-            messages=[{"role": "system", "content": "Eres Linda, una asesora de modelos de contenido digital."},
-                      {"role": "user", "content": mensaje}]
+client = openai.OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+
+respuesta = client.chat.completions.create(
+    model="gpt-4-turbo",
+    messages=[{"role": "system", "content": "Eres Linda, una asesora de modelos de contenido digital."},
+              {"role": "user", "content": mensaje}]
         )
 
         return jsonify({"response": respuesta["choices"][0]["message"]["content"]})
